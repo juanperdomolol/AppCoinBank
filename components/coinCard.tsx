@@ -1,29 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface CoinCardProps {
   name: string;
+  priceUSD: string;
+  onPress?: () => void;
 }
 
-const CoinCard: React.FC<CoinCardProps> = ({ name }) => {
+const CoinCard: React.FC<CoinCardProps> = ({ name, priceUSD, onPress }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{name}</Text>
-      {/* Aquí puedes agregar más elementos y estilos según tus necesidades */}
-    </View>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.container}>
+        <Text style={styles.name}>{name}</Text> 
+        <Text style={styles.priceUSD}>{priceUSD}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    padding: 16,
     backgroundColor: '#f0f0f0',
-    padding: 10,
     borderRadius: 8,
-    margin: 5,
+    margin: 8,
   },
   name: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
+  },
+  priceUSD: {
+    fontSize: 16,
   },
 });
 
