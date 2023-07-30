@@ -4,14 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import CoinsScreen from './screens/CoinsScreen';
-import CoinDetailScreen from './screens/CoinDetailScreen';
-import ExchangeScreen from './screens/ExchangeScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import CoinsScreen from './src/screens/CoinsScreen';
+import CoinDetailScreen from './src/screens/CoinDetailScreen';
+import ExchangeScreen from './src/screens/ExchangeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 import exchange from './assets/exchange.png';
 import bitcoin from './assets/bitcoin.png';
-import ProfileIcon from './icons/ProfileIcon';
+import ProfileIcon from './src/icons/ProfileIcon';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,6 +19,7 @@ const Tab = createBottomTabNavigator();
 function CoinsStack() {
   return (
     <Stack.Navigator  screenOptions={{
+      // headerShown: false,
       headerStyle:{
         backgroundColor: '#ef6372'
       },

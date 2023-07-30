@@ -10,6 +10,7 @@ export interface Coin {
   percentChange24h: string;
   percentChange1h: string;
   percentChange7d: string;
+  image: string;
 }
 
 export interface CoinDetail {
@@ -28,6 +29,13 @@ export type RootStackParamList = {
   Exchange: undefined;
   Profile: undefined;
 };
+export interface CoinCardProps {
+  name: string;
+  priceUSD: string;
+  image: string;
+  percentChange24h: string;
+  onPress?: () => void;
+}
 
 // tipos de navegación para las pantallas en la pila (stack)
 export type CoinsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Coins'>;

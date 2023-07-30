@@ -38,6 +38,7 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
     fetch(`https://api.coinlore.net/api/ticker/?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         const coin: CoinDetail = {
           id: data[0].id,
           symbol: data[0].symbol,
