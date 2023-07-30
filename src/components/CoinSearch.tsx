@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View,Image, Text, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useCoinStore } from '../store/coinStore'; // Asegúrate de importar el store correcto
 import { Coin } from '../types';
+import LottieView from 'lottie-react-native';
 
 const CoinSearch: React.FC = () => {
   const { coins,setSelectedCoin  } = useCoinStore(); // Utiliza el hook useCoinStore para acceder al estado de las monedas
   const [searchText, setSearchText] = useState<string>(''); // Estado para almacenar el texto de búsqueda
   const [filteredCoins, setFilteredCoins] = useState<Coin[]>([]); // Estado para almacenar las monedas filtradas
 
-  // filtra las monedas por texto de busqueda
   const handleSearch = (text: string) => {
     const lowerText = text.toLowerCase();
     const filteredCoins = coins.filter((coin) =>
@@ -34,6 +34,14 @@ const CoinSearch: React.FC = () => {
         value={searchText}
         onChangeText={handleSearch}
       />
+       {filteredCoins.length === 0 && (
+        <LottieView
+          source={require('../assets/searchLottie.json')}
+          autoPlay
+          loop
+          style={styles.lottieAnimation}
+        />
+      )}
       <FlatList
         data={filteredCoins}
         renderItem={({ item }) => (
@@ -41,6 +49,7 @@ const CoinSearch: React.FC = () => {
             style={styles.coinItem}
             onPress={() => handleSelectCoin(item.id)}
           >
+            <Image source={{uri: `https://www.coinlore.com/img/25x25/${item.nameid}.png` }} style={styles.image} />
             <Text>{item.name}</Text>
             <Text>{item.symbol}</Text>
           </TouchableOpacity>
@@ -74,6 +83,16 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 8,
     marginBottom: 8,
+  },
+  lottieAnimation: {
+    width: 300,
+    height: 600,
+    alignSelf: 'center',
+  },
+  image:{
+    width: 40,
+    height: 40,
+    marginRight: 10,
   },
 });
 

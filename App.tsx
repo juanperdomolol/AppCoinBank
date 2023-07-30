@@ -9,8 +9,8 @@ import CoinDetailScreen from './src/screens/CoinDetailScreen';
 import ExchangeScreen from './src/screens/ExchangeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 
-import exchange from './assets/exchange.png';
-import bitcoin from './assets/bitcoin.png';
+import exchange from './src/assets/exchange.png'
+import bitcoin from './src/assets/bitcoin.png';
 import ProfileIcon from './src/icons/ProfileIcon';
 
 const Stack = createNativeStackNavigator();
@@ -19,10 +19,11 @@ const Tab = createBottomTabNavigator();
 function CoinsStack() {
   return (
     <Stack.Navigator  screenOptions={{
-      // headerShown: false,
-      headerStyle:{
-        backgroundColor: '#ef6372'
-      },
+      headerShown: false,
+      // headerBackVisible: true ,
+      // headerStyle:{
+      //   backgroundColor: '#228B22'
+      // },
       
   }}>
       <Stack.Screen name="CoinScreen" component={CoinsScreen} />

@@ -5,7 +5,8 @@ import { RouteProp } from '@react-navigation/native';
 export interface Coin {
   id: number;
   symbol: string;
-  name: string;     
+  name: string;
+  nameid: string;     
   priceUSD: string;
   percentChange24h: string;
   percentChange1h: string;

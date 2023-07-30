@@ -21,7 +21,6 @@ const ExchangeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Exchange Screen</Text>
       {selectedCoin ? 
         <ExchangeComponent/>
        : 

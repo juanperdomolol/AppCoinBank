@@ -19,6 +19,7 @@ const CoinsScreen = () => {
           id: coin.id,
           symbol: coin.symbol,
           name: coin.name,
+          nameid: coin.nameid,
           priceUSD: coin.price_usd,
           percentChange24h: coin.percent_change_24h,
           percentChange1h: coin.percent_change_1h,
@@ -99,11 +100,17 @@ const CoinsScreen = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={filteredCoins}
-        renderItem={renderCoinCard}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      <View style={styles.listContainer}>
+        {filteredCoins.length > 0 ? (
+          <FlatList
+            data={filteredCoins}
+            renderItem={renderCoinCard}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        ) : (
+          <Text style={styles.noResultsText}>Lo siento, no coincide la búsqueda.</Text>
+        )}
+      </View>
     </View>
   );
 };
@@ -156,6 +163,15 @@ const styles = StyleSheet.create({
   sortButtonContainer: {
     alignItems: 'center',
     marginRight: 10,
+  },
+  listContainer: {
+    flex: 1, // Esta propiedad mantiene el searchContainer en la parte superior
+  },
+  noResultsText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 
