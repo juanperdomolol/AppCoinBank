@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity  } from 'react-native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
+import { useCoinStore } from '../store/coinStore';
 
 type CoinDetailScreenRouteProp = RouteProp<RootStackParamList, 'CoinDetailScreen'>;
 
@@ -19,7 +20,17 @@ interface CoinDetail {
   percentChange7d: string;
 }
 
+
 const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
+  const navigation = useNavigation();
+  const { setSelectedCoin } = useCoinStore();
+  
+  const handleNavigateToExchangeScreen = () => {
+    if (coinDetail) {
+      setSelectedCoin(coinDetail); // Guarda la moneda seleccionada en el estado de Zustand
+    }
+    navigation.navigate('Exchange');
+  };
   const { id } = route.params;
   const [coinDetail, setCoinDetail] = useState<CoinDetail | null>(null);
 
@@ -61,6 +72,9 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
       <Text>Percent Change (24h): {coinDetail.percentChange24h}%</Text>
       <Text>Percent Change (1h): {coinDetail.percentChange1h}%</Text>
       <Text>Percent Change (7d): {coinDetail.percentChange7d}%</Text>
+      <TouchableOpacity onPress={handleNavigateToExchangeScreen} style={styles.convertButton}>
+        <Text style={styles.convertButtonText}>Convert Money</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -73,6 +87,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
+    fontWeight: 'bold',
+  },
+  convertButton: {
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    backgroundColor: '#2196F3', // Puedes cambiar el color a tu gusto
+    borderRadius: 8,
+  },
+  convertButtonText: {
+    color: '#FFFFFF', // Texto en color blanco para mejor contraste
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
