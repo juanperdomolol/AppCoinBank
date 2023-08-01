@@ -4,6 +4,7 @@ import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../types';
 import { useCoinStore } from '../store/coinStore';
 import { LineChart } from 'react-native-chart-kit';
+import BackButton from '../components/BackButton';
 
 type CoinDetailScreenRouteProp = RouteProp<RootStackParamList, 'CoinDetailScreen'>;
 
@@ -56,7 +57,6 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
         setLoading(false); // Establecer el estado de carga a falso cuando los datos se han cargado
       })
       .catch((error) => {
-        console.error('Error fetching coin detail:', error);
         setLoading(false); // Establecer el estado de carga a falso en caso de error también
       });
   }, [id]);
@@ -110,6 +110,7 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
 
   return (
     <View style={styles.container}>
+      <BackButton/>
       <View style={styles.card}>
         <View style={styles.titleContainer}>
           <Image

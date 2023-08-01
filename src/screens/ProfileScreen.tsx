@@ -28,11 +28,13 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
         style={styles.lottieAnimation}
       />
       <View style={styles.linksContainer}>
-        <TouchableOpacity onPress={() => openLink(githubUrl)}>
-          <Image source={require('../assets/gitgub.png')} style={styles.icon} />
+        <TouchableOpacity onPress={() => openLink(githubUrl)} style={styles.linkButton}>
+          <Image source={require('../assets/github.png')} style={styles.icon} />
+          <Text style={styles.linkText}>GitHub</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => openLink(linkedinUrl)}>
+        <TouchableOpacity onPress={() => openLink(linkedinUrl)} style={styles.linkButton}>
           <Image source={require('../assets/linkedin.png')} style={styles.icon} />
+          <Text style={styles.linkText}>LinkedIn</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -71,6 +73,18 @@ const styles = StyleSheet.create({
   icon: {
     width: 40,
     height: 40,
+  },
+  linkButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF', // Fondo blanco para el botón
+    borderRadius: 20, // Bordes redondeados
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginHorizontal: 8,
+  },
+  linkText: {
+    marginLeft: 8,
   },
 });
 

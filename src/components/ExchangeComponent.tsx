@@ -43,21 +43,21 @@ const ExchangeComponent: React.FC = () => {
         )}
         <TextInput
           style={styles.input}
-          placeholder="Cantidad de Dólares"
+          placeholder="Dollar Amount"
           keyboardType="numeric"
           value={dollars}
           onChangeText={(value) => setDollars(value)}
         />
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.convertButton} onPress={convertDollarsToSelectedCoin}>
-            <Text style={styles.convertButtonText}>Convertir</Text>
+            <Text style={styles.convertButtonText}>Convert</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteSelectedCoin}>
-            <Text style={styles.deleteButtonText}>Eliminar Moneda</Text>
+            <Text style={styles.deleteButtonText}>Remove Coin</Text>
           </TouchableOpacity>
         </View>
         {convertedAmount !== '' && (
-          <Text style={styles.resultText}>Equivalente en {selectedCoin.symbol}: {convertedAmount}</Text>
+          <Text style={styles.resultText}>Equivalent in {selectedCoin.symbol}: {convertedAmount}</Text>
         )}
       </Card>
     </View>

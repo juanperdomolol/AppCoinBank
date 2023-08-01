@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, Image, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CoinCard from '../components/CoinCard';
 import { useCoinStore } from '../store/coinStore';
 import { Coin } from '../types';
 
-const CoinsScreen = () => {
+const CoinsScreen: React.FC = () => {
   const { coins, setCoins } = useCoinStore();
   const [filteredCoins, setFilteredCoins] = useState<Coin[]>([]);
   const [searchText, setSearchText] = useState<string>('');
@@ -86,6 +86,7 @@ const CoinsScreen = () => {
               placeholder="Search by name"
               value={searchText}
               onChangeText={handleSearch}
+              placeholderTextColor="#ccc"
             />
             {searchText.length > 0 && (
               <TouchableOpacity onPress={handleClearSearch}>
@@ -94,7 +95,18 @@ const CoinsScreen = () => {
             )}
           </View>
         </View>
-        <TouchableOpacity onPress={() => handleSortOrderChange(sortOrder === 'asc' ? 'desc' : 'asc')} style={styles.sortButtonContainer}>
+        <TouchableOpacity
+          onPress={() => handleSortOrderChange(sortOrder === 'asc' ? 'desc' : 'asc')}
+          style={styles.sortButtonContainer}
+        >
+          <Image
+            source={
+              sortOrder === 'asc'
+                ? require('../assets/up-arrow.png')
+                : require('../assets/down-arrow.png')
+            }
+            style={styles.sortButtonImage}
+          />
           <Text style={styles.filterButton}>
             {sortOrder === 'asc' ? 'Sort by Higher price' : 'Sort by Lower price'}
           </Text>
@@ -108,7 +120,7 @@ const CoinsScreen = () => {
             keyExtractor={(item) => item.id.toString()}
           />
         ) : (
-          <Text style={styles.noResultsText}>Lo siento, no coincide la búsqueda.</Text>
+          <Text style={styles.noResultsText}>No results found.</Text>
         )}
       </View>
     </View>
@@ -117,7 +129,6 @@ const CoinsScreen = () => {
 
 const getCoinImgUrl = (nameid: string, small?: boolean) =>
   `https://www.coinlore.com/img/${small ? '25x25/' : ''}${nameid}.png`;
-
 
 const styles = StyleSheet.create({
   container: {
@@ -149,11 +160,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#444',
     paddingVertical: 8,
     paddingHorizontal: 16,
     fontSize: 16,
     textAlign: 'center',
+    color: '#000',
   },
   clearButton: {
     fontSize: 18,
@@ -161,11 +173,17 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   sortButtonContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
     marginRight: 10,
   },
+  sortButtonImage: {
+    width: 20,
+    height: 20,
+    marginRight: 5,
+  },
   listContainer: {
-    flex: 1, // Esta propiedad mantiene el searchContainer en la parte superior
+    flex: 1,
   },
   noResultsText: {
     fontSize: 18,

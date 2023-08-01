@@ -33,27 +33,27 @@ const CoinCard: React.FC<CoinCardProps> = ({ name, priceUSD, percentChange24h, i
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row', // Alinear los elementos en una fila horizontal
+    flexDirection: 'row',
     padding: 16,
-    backgroundColor: '#ffffff', // Fondo blanco
+    backgroundColor: '#ffffff',
     borderRadius: 8,
     margin: 20,
     alignItems: 'center',
     marginBottom: 2,
   },
   imageContainer: {
-    marginRight: 16, // Espacio entre la imagen y el texto
+    marginRight: 16,
   },
   image: {
     width: 40,
     height: 40,
   },
   textContainer: {
-    flex: 1, // Ocupar el espacio restante en la fila
+    flex: 1,
   },
   namePriceContainer: {
-    flexDirection: 'row', // Alinear los elementos en una fila horizontal
-    justifyContent: 'space-between', // Distribuir los elementos de forma equitativa
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   name: {
@@ -67,13 +67,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   last24hContainer: {
-    flexDirection: 'row', // Alinear los elementos en una fila horizontal
-    alignItems: 'center',
+    flexDirection: 'row',
     marginTop: 4,
   },
   last24h: {
     fontSize: 12,
-    color: '#999999', // Color gris
+    color: '#999999',
     marginRight: 10,
   },
   percentChange: {
