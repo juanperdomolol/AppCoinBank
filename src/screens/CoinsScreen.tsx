@@ -102,8 +102,8 @@ const CoinsScreen: React.FC = () => {
           <Image
             source={
               sortOrder === 'asc'
-                ? require('../assets/up-arrow.png')
-                : require('../assets/down-arrow.png')
+                ? require('../assets/upArrow.png')
+                : require('../assets/downArrow.png')
             }
             style={styles.sortButtonImage}
           />
