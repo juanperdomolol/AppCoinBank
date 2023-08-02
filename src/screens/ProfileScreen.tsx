@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
   linkButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF', // Fondo blanco para el botón
-    borderRadius: 20, // Bordes redondeados
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginHorizontal: 8,

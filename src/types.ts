@@ -38,7 +38,6 @@ export interface CoinCardProps {
   onPress?: () => void;
 }
 
-// tipos de navegación para las pantallas en la pila (stack)
 export type CoinsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Coins'>;
 export type CoinDetailScreenRouteProp = RouteProp<RootStackParamList, 'CoinDetailScreen'>;
 export type ExchangeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Exchange'>;

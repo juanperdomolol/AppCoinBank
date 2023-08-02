@@ -14,7 +14,7 @@ const BackButton: React.FC = () => {
     <View style={styles.container}>
     <TouchableOpacity onPress={handleGoBack} style={styles.buttonContainer}>
       <LottieView
-        source={require('../assets/backLottie.json')} // Reemplaza la ruta con la ubicación de tu archivo Lottie
+        source={require('../assets/backLottie.json')}
         style={styles.buttonLottie}
         autoPlay
         loop={false}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   buttonLottie: {
     width: 30,
-    height: 30, // Ajusta el tamaño del Lottie según tus necesidades
+    height: 30,
   },
 });
 

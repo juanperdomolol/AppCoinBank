@@ -5,6 +5,7 @@ import { RootStackParamList } from '../types';
 import { useCoinStore } from '../store/coinStore';
 import { LineChart } from 'react-native-chart-kit';
 import BackButton from '../components/BackButton';
+import  theme from '../theme'
 
 type CoinDetailScreenRouteProp = RouteProp<RootStackParamList, 'CoinDetailScreen'>;
 
@@ -16,7 +17,7 @@ interface CoinDetail {
   id: number;
   symbol: string;
   name: string;
-  nameid: string; // Corregir aquí el nombre del atributo 'nameid'
+  nameid: string;
   priceUSD: string;
   percentChange24h: string;
   percentChange1h: string;
@@ -29,35 +30,35 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
 
   const handleNavigateToExchangeScreen = () => {
     if (coinDetail) {
-      setSelectedCoin(coinDetail); // Guarda la moneda seleccionada en el estado de Zustand
+      setSelectedCoin(coinDetail);
     }
     navigation.navigate('Exchange');
   };
 
   const { id } = route.params;
   const [coinDetail, setCoinDetail] = useState<CoinDetail | null>(null);
-  const [loading, setLoading] = useState(true); // Estado para controlar si se está cargando o no
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`https://api.coinlore.net/api/ticker/?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const coin: CoinDetail = {
           id: data[0].id,
           symbol: data[0].symbol,
           name: data[0].name,
-          nameid: data[0].nameid, // Corregir aquí el nombre del atributo 'nameid'
+          nameid: data[0].nameid,
           priceUSD: data[0].price_usd,
           percentChange24h: data[0].percent_change_24h,
           percentChange1h: data[0].percent_change_1h,
           percentChange7d: data[0].percent_change_7d,
         };
         setCoinDetail(coin);
-        setLoading(false); // Establecer el estado de carga a falso cuando los datos se han cargado
+        setLoading(false);
       })
       .catch((error) => {
-        setLoading(false); // Establecer el estado de carga a falso en caso de error también
+        setLoading(false);
       });
   }, [id]);
 
@@ -88,7 +89,6 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
   };
 
   if (loading) {
-    // Mostrar el skeleton mientras se cargan los datos
     return (
       <View style={styles.container}>
         <View style={styles.skeletonCard}>
@@ -122,16 +122,15 @@ const CoinDetailScreen: React.FC<CoinDetailScreenProps> = ({ route }) => {
         <Text>Symbol: {coinDetail?.symbol}</Text>
         <Text>Price (USD): ${coinDetail?.priceUSD}</Text>
 
-        {/* Gráfico de líneas */}
         <LineChart
           data={getChartData()}
           width={300}
           height={400}
           chartConfig={{
-            backgroundGradientFrom: '#66CDAA',
-            backgroundGradientTo: '#ffffff',
-            decimalPlaces: 3, // Mostrar hasta 3 decimales
-            color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`, //blue color lines
+            backgroundGradientFrom:  theme.colors.charts,
+            backgroundGradientTo: theme.colors.white,
+            decimalPlaces: 3,
+            color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           }}
           bezier
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.colors.white,
     borderRadius: 8,
     padding: 16,
     margin: 20,
@@ -167,11 +166,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingVertical: 12,
     paddingHorizontal: 24,
-    backgroundColor: '#2196F3', // Puedes cambiar el color a tu gusto
+    backgroundColor: theme.colors.blue,
     borderRadius: 8,
   },
   convertButtonText: {
-    color: '#FFFFFF', // Texto en color blanco para mejor contraste
+    color: theme.colors.white,
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -192,39 +191,38 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  // Skeleton styles
   skeletonCard: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: theme.colors.gray,
     borderRadius: 8,
     padding: 16,
     margin: 20,
     alignItems: 'center',
   },
   titleSkeleton: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: theme.colors.gray,
     width: 100,
     height: 24,
     borderRadius: 4,
   },
   skeletonText: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: theme.colors.gray,
     width: 200,
     height: 18,
     borderRadius: 4,
     marginVertical: 4,
   },
   chartSkeleton: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: theme.colors.gray,
     width: 300,
     height: 400,
     borderRadius: 8,
     marginTop: 20,
   },
   skeletonButton: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: theme.colors.gray,
   },
   skeletonButtonText: {
-    color: '#f2f2f2',
+    color: theme.colors.white,
   },
 });
 

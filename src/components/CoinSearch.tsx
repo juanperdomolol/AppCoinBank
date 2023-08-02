@@ -32,7 +32,7 @@ const CoinSearch: React.FC = () => {
         placeholder="Search coin..."
         value={searchText}
         onChangeText={handleSearch}
-        placeholderTextColor="black" // Text color for the placeholder
+        placeholderTextColor="black"
       />
       {searchText === '' && filteredCoins.length === 0 ? (
         <LottieView
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: '100%', // Full width
+    width: '100%',
     borderWidth: 1,
-    borderColor: 'black', // Dark border color
+    borderColor: 'black',
     borderRadius: 8,
     paddingHorizontal: 12,
     marginBottom: 16,
@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginBottom: 12,
-    backgroundColor: 'white', // Background color for the "card"
+    backgroundColor: 'white',
     borderRadius: 8,
     shadowColor: 'black',
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 3, // Android shadow
+    elevation: 3,
   },
   lottieAnimation: {
     width: 300,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   notFoundText: {
     fontSize: 16,
-    color: 'black', // Text color for the "Not Found" message
+    color: 'black',
     marginTop: 16,
   },
 });
